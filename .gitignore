@@ -1,7 +1,7 @@
 # sundar added these
-/android/
-/ios/
-.DS_Store
+project_files/android/
+project_files/ios/
+*.DS_Store
 
 # Miscellaneous
 *.class
