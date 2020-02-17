@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../data/contact.dart';
-import '../data/contact.dart';
 
 class FooterBar extends StatefulWidget {
   @override
