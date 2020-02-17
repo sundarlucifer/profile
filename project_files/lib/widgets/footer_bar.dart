@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:my_profile/data/contact.dart';
 
-class FooterBar extends StatelessWidget {
+class FooterBar extends StatefulWidget{
+
+
+
+}
+
+
+class FooterBarState extends State<FooterBar> {
   List<Widget> _bootomBar = [];
 
   @override
-  Widget build(BuildContext context) {
+  void init(){
+    
     contactList.forEach((element) {
       _bootomBar.add(
         CircleAvatar(
@@ -47,6 +55,12 @@ class FooterBar extends StatelessWidget {
         width: 20.0,
       ));
     });
+
+    super.initstate();
+  }
+
+  @override
+  Widget build(BuildContext context) {
 
     return Container(
       width: MediaQuery.of(context).size.width,
