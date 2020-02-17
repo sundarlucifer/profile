@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_profile/widgets/footer_bar.dart';
+import '../widgets/footer_bar.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -7,8 +7,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  
-  String _bio = '''I am a developer interested in full stack Mobile app development. I love programming as I am a fan of datastructures. Being a fast learner i can adapt to new technologies and work with them on the flow.''';
+  String _bio =
+      '''I am a developer interested in full stack Mobile app development. I love programming as I am a fan of datastructures. Being a fast learner i can adapt to new technologies and work with them on the flow.''';
 
   Widget _circularWidget(String text, Color color) {
     return Padding(
@@ -46,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
                                 Text(
-                                  'Sundar Sravanan',
+                                  'Sundar Saravanan',
                                   style: TextStyle(
                                     fontSize: 30.0,
                                     fontWeight: FontWeight.bold,
@@ -103,7 +103,14 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            Text('Beautifuk image'),
+                            Container(
+                              child: Image(
+                                height: 300.0,
+                                width: 300.0,
+                                image: AssetImage('assets/images/img_01.png'),
+                                fit: BoxFit.cover,
+                              ),
+                            )
                           ],
                         ),
                       ),
@@ -131,12 +138,18 @@ class _HomeScreenState extends State<HomeScreen> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: <Widget>[
-                                _circularWidget('MY RESUME', Theme.of(context).primaryColor),
-                                _circularWidget('MY WORK', Theme.of(context).highlightColor),
-                                _circularWidget('MY SKILLS', Theme.of(context).primaryColorLight),
+                                _circularWidget('MY RESUME',
+                                    Theme.of(context).primaryColor),
+                                _circularWidget('MY WORK',
+                                    Theme.of(context).highlightColor),
+                                _circularWidget('MY SKILLS',
+                                    Theme.of(context).primaryColorLight),
                               ],
                             ),
-                            Text('$_bio', style: TextStyle(),),
+                            Text(
+                              '$_bio',
+                              style: TextStyle(),
+                            ),
                           ],
                         ),
                       ),

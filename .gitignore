@@ -1,6 +1,7 @@
 # sundar added these
 project_files/android/
 project_files/ios/
+project_files/build/
 *.DS_Store
 
 # Miscellaneous
