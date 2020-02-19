@@ -9,20 +9,14 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  bool _isAndroid;
-  _HomeScreenState(){
-    try{
-      _isAndroid = Platform.isAndroid;
-    }catch(e){
-      _isAndroid = false;
-    }
-  }
+  bool _isSmallScreen;
+
   String _bio =
       '''I am a developer interested in full stack Mobile app development. I love programming as I am a fan of datastructures. Being a fast learner i can adapt to new technologies and work with them on the flow.''';
 
   Widget _circularWidget(String text, Color color) {
     return Padding(
-      padding: _isAndroid 
+      padding: _isSmallScreen 
       ? EdgeInsets.all(0.0)
       : EdgeInsets.all(10.0),
       child: CircleAvatar(
@@ -38,8 +32,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    _isSmallScreen = MediaQuery.of(context).size.width < 500;
     return Scaffold(
-      body: _isAndroid
+      body: _isSmallScreen
           ? ListView(
               children: _getScreen(),
             )
@@ -50,7 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   _getScreen() {
-    return _isAndroid
+    return _isSmallScreen
         ? [
             Container(
               child: Column(
@@ -65,7 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ]
         : [
             Expanded(
-              flex: _isAndroid ? 6 : 3,
+              flex: _isSmallScreen ? 6 : 3,
               child: Container(
                 child: Column(
                   children: <Widget>[
@@ -115,7 +110,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Row(
           children: <Widget>[
             Expanded(
-              flex: _isAndroid ? 3 : 1,
+              flex: _isSmallScreen ? 3 : 1,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
@@ -143,7 +138,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             Expanded(
               flex: 1,
-              child: _isAndroid
+              child: _isSmallScreen
                   ? IconButton(
                       icon: Icon(
                         Icons.menu,
@@ -185,8 +180,8 @@ class _HomeScreenState extends State<HomeScreen> {
         children: <Widget>[
           Container(
             child: Image(
-              height: _isAndroid ? 150.0 : 300.0,
-              width: _isAndroid ? 150.0 : 300.0,
+              height: _isSmallScreen ? 150.0 : 300.0,
+              width: _isSmallScreen ? 150.0 : 300.0,
               image: AssetImage('assets/images/img_01.png'),
               fit: BoxFit.cover,
             ),
@@ -198,7 +193,7 @@ class _HomeScreenState extends State<HomeScreen> {
       children: <Widget>[
         _getGreeting(),
         Row(
-          mainAxisAlignment: _isAndroid
+          mainAxisAlignment: _isSmallScreen
           ? MainAxisAlignment.spaceEvenly
           : MainAxisAlignment.start,
           children: <Widget>[
@@ -213,7 +208,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ],
     );
-    return _isAndroid
+    return _isSmallScreen
         ? Padding(
           padding: EdgeInsets.symmetric(horizontal: 8.0),
           child: Column(
