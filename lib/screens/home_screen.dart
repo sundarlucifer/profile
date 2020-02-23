@@ -104,7 +104,7 @@ class _HomeScreenState extends State<HomeScreen> {
               size: 40.0,
               color: Theme.of(context).accentColor,
             ),
-            onPressed: () {},
+            onPressed: () => launch('https://linkedin.com/in/sundar-saravanan-a3922318b/'),
           )
         : Row(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -118,7 +118,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               GestureDetector(
                 child: Text('RESUME'),
-                onTap: () => {},
+                onTap: () => launch('https://github.com/sundarlucifer/profile/blob/master/Resume.pdf'),
               ),
               GestureDetector(
                 child: Text('CONTACT'),
