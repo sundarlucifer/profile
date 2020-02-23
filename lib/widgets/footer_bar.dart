@@ -1,69 +1,101 @@
 import 'package:flutter/material.dart';
-import '../data/contact.dart';
+import 'package:my_profile/data/user_data.dart';
 
 class FooterBar extends StatefulWidget {
+  final double width;
+  FooterBar({this.width});
+
   @override
   State<StatefulWidget> createState() {
-    
-    return FooterBarState();
+    return FooterBarState(width);
   }
 }
 
 class FooterBarState extends State<FooterBar> {
   List<Widget> _bootomBar = [];
+  final double width;
+
+  FooterBarState(this.width);
 
   @override
   Widget build(BuildContext context) {
     _bootomBar.clear();
     contactList.forEach((element) {
-        _bootomBar.add(
-          CircleAvatar(
-            backgroundColor: Theme.of(context).highlightColor,
-            child: Icon(
-              element.icon,
-              color: Colors.white70,
+      _bootomBar.add(
+        Row(
+          children: <Widget>[
+            CircleAvatar(
+              radius: 20.0,
+              backgroundColor: Theme.of(context).highlightColor,
+              child: Icon(
+                element.icon,
+                size: 25.0,
+                color: Colors.white70,
+              ),
             ),
-          ),
-        );
-        _bootomBar.add(
-          SizedBox(
-            width: 10.0,
-          ),
-        );
-        _bootomBar.add(
-          Container(
-            width: 170.0,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  element.title,
-                  style: TextStyle(
-                      color: Colors.white, fontWeight: FontWeight.w600),
-                ),
-                Text(
-                  element.content,
-                  style: TextStyle(
-                      color: Colors.white70, fontWeight: FontWeight.w100),
-                  softWrap: true,
-                )
-              ],
+            SizedBox(
+              width: 10.0,
             ),
-          ),
-        );
-        _bootomBar.add(SizedBox(
-          width: 20.0,
-        ));
-      });
+            Container(
+              // width: 170,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    element.title,
+                    style: TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.w600),
+                  ),
+                  Text(
+                    element.content,
+                    style: TextStyle(
+                        color: Colors.white70, fontWeight: FontWeight.w100),
+                    softWrap: true,
+                  )
+                ],
+              ),
+            ),
+          ],
+        ),
+      );
+    });
 
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      color: Theme.of(context).primaryColor,
-      child: Row(
+    return _getContent();
+  }
+
+  _getContent() {
+    // if(width < 450)
+    //   return Padding(
+    //     padding: EdgeInsets.symmetric(horizontal: 20.0),
+    //     child: Column(
+    //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    //       crossAxisAlignment: CrossAxisAlignment.center,
+    //       children: _bootomBar,
+    //     ),
+    //   );
+    if (width < 750)
+      return Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: _bootomBar,
-      ),
+        children: <Widget>[
+          Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: _bootomBar.sublist(0, 2),
+              ),
+              Row(
+                children: _bootomBar.sublist(2, 3),
+              ),
+            ],
+          ),
+        ],
+      );
+    
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: _bootomBar,
     );
   }
 }
