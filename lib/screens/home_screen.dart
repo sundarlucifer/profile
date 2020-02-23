@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_profile/data/user_data.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../widgets/footer_bar.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -63,7 +64,9 @@ class _HomeScreenState extends State<HomeScreen> {
             Container(
               color: Theme.of(context).primaryColor,
               height: 100,
-              child: FooterBar(width: width,),
+              child: FooterBar(
+                width: width,
+              ),
             ),
           ];
   }
@@ -168,14 +171,17 @@ class _HomeScreenState extends State<HomeScreen> {
             _circularWidget(
               'MY RESUME',
               Theme.of(context).primaryColor,
+              'https://github.com/sundarlucifer/profile/blob/master/Resume.pdf',
             ),
             _circularWidget(
               'MY WORK',
               Theme.of(context).highlightColor,
+              'https://github.com/sundarlucifer',
             ),
             _circularWidget(
               'MY SKILLS',
               Theme.of(context).primaryColorLight,
+              'https://github.com/sundarlucifer',
             ),
           ],
         ),
@@ -236,15 +242,18 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _circularWidget(String text, Color color) {
+  Widget _circularWidget(String text, Color color, String url) {
     return Padding(
       padding: _isSmallScreen ? EdgeInsets.all(0.0) : EdgeInsets.all(10.0),
-      child: CircleAvatar(
-        radius: _isSmallScreen ? MediaQuery.of(context).size.width / 8 : 50.0,
-        backgroundColor: color,
-        child: Text(
-          '$text',
-          style: TextStyle(fontSize: 10.0, color: Colors.white),
+      child: GestureDetector(
+        onTap: () => launch(url),
+              child: CircleAvatar(
+          radius: _isSmallScreen ? MediaQuery.of(context).size.width / 8 : 50.0,
+          backgroundColor: color,
+          child: Text(
+            '$text',
+            style: TextStyle(fontSize: 10.0, color: Colors.white),
+          ),
         ),
       ),
     );

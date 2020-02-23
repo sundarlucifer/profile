@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:my_profile/data/user_data.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class FooterBar extends StatefulWidget {
   final double width;
@@ -47,11 +49,19 @@ class FooterBarState extends State<FooterBar> {
                     style: TextStyle(
                         color: Colors.white, fontWeight: FontWeight.w600),
                   ),
-                  Text(
-                    element.content,
-                    style: TextStyle(
-                        color: Colors.white70, fontWeight: FontWeight.w100),
-                    softWrap: true,
+                  GestureDetector(
+                    onTap: () async {
+                      if(await canLaunch(element.content))
+                        launch(element.content);
+                      else
+                        throw 'Could not launch ${element.content}';
+                    },
+                    child: Text(
+                      element.content,
+                      style: TextStyle(
+                          color: Colors.white70, fontWeight: FontWeight.w100),
+                      softWrap: true,
+                    ),
                   )
                 ],
               ),
@@ -92,7 +102,7 @@ class FooterBarState extends State<FooterBar> {
           ),
         ],
       );
-    
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: _bootomBar,
